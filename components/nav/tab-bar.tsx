@@ -4,9 +4,9 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 
-type IconName = 'compass' | 'book' | 'user';
+export type IconName = 'compass' | 'book' | 'user';
 
-interface TabBarItem {
+export interface TabBarItem {
   href: string;
   label: string;
   icon: IconName;
@@ -24,7 +24,7 @@ const ICON_PROPS = {
 } as const;
 
 export function TabBar({ items }: { items: TabBarItem[] }) {
-  const pathname = usePathname();
+  const pathname = usePathname() ?? '';
 
   return (
     <nav
@@ -33,8 +33,7 @@ export function TabBar({ items }: { items: TabBarItem[] }) {
     >
       <ul className="grid grid-cols-3">
         {items.map((it) => {
-          const active =
-            pathname === it.href || pathname?.startsWith(it.href + '/') || false;
+          const active = pathname === it.href || pathname.startsWith(it.href + '/');
           return (
             <li key={it.href}>
               <Link

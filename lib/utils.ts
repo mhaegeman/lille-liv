@@ -1,6 +1,7 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 import { differenceInMonths } from 'date-fns';
+import type { OpeningHours } from './types';
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -35,14 +36,10 @@ export function slugify(input: string) {
     .replace(/^-+|-+$/g, '');
 }
 
-export type OpeningHours = Partial<
-  Record<'mon' | 'tue' | 'wed' | 'thu' | 'fri' | 'sat' | 'sun', [string, string] | null>
->;
+const ISO_DAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'] as const satisfies readonly (keyof NonNullable<OpeningHours>)[];
 
-const ISO_DAY_KEYS = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'] as const;
-
-const toMinutes = (s: string) => {
-  const [h, m] = s.split(':').map(Number);
+const toMinutes = (hhmm: string) => {
+  const [h, m] = hhmm.split(':').map(Number);
   return h * 60 + m;
 };
 
@@ -50,6 +47,7 @@ export function isOpenNow(openingHours: OpeningHours | null | undefined, now: Da
   if (!openingHours) return null;
   const today = openingHours[ISO_DAY_KEYS[now.getDay()]];
   if (!today) return false;
+  const [open, close] = today;
   const cur = now.getHours() * 60 + now.getMinutes();
-  return cur >= toMinutes(today[0]) && cur < toMinutes(today[1]);
+  return cur >= toMinutes(open) && cur < toMinutes(close);
 }

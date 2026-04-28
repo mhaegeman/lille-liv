@@ -6,6 +6,8 @@ import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { createSupabaseBrowserClient } from '@/lib/supabase/client';
 
+const supabase = createSupabaseBrowserClient();
+
 export function SignInForm() {
   const t = useTranslations('auth');
   const router = useRouter();
@@ -17,7 +19,6 @@ export function SignInForm() {
     e.preventDefault();
     setError(null);
     startTransition(async () => {
-      const supabase = createSupabaseBrowserClient();
       const { error: signInError } = await supabase.auth.signInWithOtp({
         email,
         options: { emailRedirectTo: `${window.location.origin}/auth/callback` },

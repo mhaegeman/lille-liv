@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { type ReactNode } from 'react';
 import { getTranslations } from 'next-intl/server';
-import { TabBar } from './tab-bar';
+import { TabBar, type TabBarItem } from './tab-bar';
 
 export async function AppShell({ children }: { children: ReactNode }) {
   const [t, tApp] = await Promise.all([
@@ -9,10 +9,10 @@ export async function AppShell({ children }: { children: ReactNode }) {
     getTranslations('app'),
   ]);
 
-  const items = [
-    { href: '/discover', label: t('discover'), icon: 'compass' as const },
-    { href: '/journal', label: t('journal'), icon: 'book' as const },
-    { href: '/profile', label: t('profile'), icon: 'user' as const },
+  const items: TabBarItem[] = [
+    { href: '/discover', label: t('discover'), icon: 'compass' },
+    { href: '/journal', label: t('journal'), icon: 'book' },
+    { href: '/profile', label: t('profile'), icon: 'user' },
   ];
 
   return (
