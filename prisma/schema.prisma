@@ -1,0 +1,259 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id        String   @id @db.Uuid
+  email     String   @unique
+  name      String?
+  locale    String   @default("da-DK")
+  createdAt DateTime @default(now()) @map("created_at")
+  updatedAt DateTime @updatedAt @map("updated_at")
+
+  children        Child[]
+  aulaConnections AulaConnection[]
+
+  @@map("users")
+}
+
+enum Gender {
+  girl
+  boy
+  other
+  prefer_not_to_say
+
+  @@map("gender")
+}
+
+model Child {
+  id          String    @id @default(uuid()) @db.Uuid
+  userId      String    @map("user_id") @db.Uuid
+  name        String
+  dateOfBirth DateTime  @map("date_of_birth") @db.Date
+  photoUrl    String?   @map("photo_url")
+  gender      Gender?
+  createdAt   DateTime  @default(now()) @map("created_at")
+  updatedAt   DateTime  @updatedAt @map("updated_at")
+
+  user            User             @relation(fields: [userId], references: [id], onDelete: Cascade)
+  milestones      Milestone[]
+  activities      ActivityLog[]
+  aulaConnections AulaConnection[]
+  aulaHighlights  AulaHighlight[]
+
+  @@index([userId])
+  @@map("children")
+}
+
+enum MilestoneType {
+  first_smile
+  first_laugh
+  first_word
+  first_steps
+  sat_up_alone
+  first_tooth
+  slept_through
+  first_food
+  first_haircut
+  started_vuggestue
+  started_bornehave
+  custom
+
+  @@map("milestone_type")
+}
+
+model Milestone {
+  id        String        @id @default(uuid()) @db.Uuid
+  childId   String        @map("child_id") @db.Uuid
+  type      MilestoneType
+  title     String?
+  date      DateTime      @db.Date
+  notes     String?
+  photoUrl  String?       @map("photo_url")
+  createdAt DateTime      @default(now()) @map("created_at")
+  updatedAt DateTime      @updatedAt @map("updated_at")
+
+  child Child @relation(fields: [childId], references: [id], onDelete: Cascade)
+
+  @@index([childId, date])
+  @@map("milestones")
+}
+
+model ActivityLog {
+  id           String   @id @default(uuid()) @db.Uuid
+  childId      String   @map("child_id") @db.Uuid
+  venueId      String?  @map("venue_id") @db.Uuid
+  title        String
+  description  String?
+  date         DateTime @db.Date
+  photos       String[] @default([])
+  locationLat  Decimal? @map("location_lat") @db.Decimal(9, 6)
+  locationLng  Decimal? @map("location_lng") @db.Decimal(9, 6)
+  tags         String[] @default([])
+  createdAt    DateTime @default(now()) @map("created_at")
+  updatedAt    DateTime @updatedAt @map("updated_at")
+
+  child Child  @relation(fields: [childId], references: [id], onDelete: Cascade)
+  venue Venue? @relation(fields: [venueId], references: [id], onDelete: SetNull)
+
+  @@index([childId, date])
+  @@map("activities_log")
+}
+
+enum VenueCategory {
+  cafe
+  playground
+  indoor_play
+  cinema
+  library
+  swimming
+  theatre
+  museum
+  event
+  nature
+  gymnasium
+
+  @@map("venue_category")
+}
+
+enum Neighbourhood {
+  norrebro
+  osterbro
+  vesterbro
+  frederiksberg
+  indre_by
+  amager
+  valby
+  nordvest
+  bispebjerg
+  sydhavn
+  christianshavn
+  other
+
+  @@map("neighbourhood")
+}
+
+model Venue {
+  id            String        @id @default(uuid()) @db.Uuid
+  slug          String        @unique
+  name          String
+  description   String
+  category      VenueCategory
+  address       String
+  lat           Decimal       @db.Decimal(9, 6)
+  lng           Decimal       @db.Decimal(9, 6)
+  ageMinMonths  Int           @default(0) @map("age_min_months")
+  ageMaxMonths  Int           @default(72) @map("age_max_months")
+  photos        String[]      @default([])
+  rating        Float?
+  website       String?
+  phone         String?
+  tags          String[]      @default([])
+  indoor        Boolean       @default(true)
+  priceLevel    PriceLevel    @default(free) @map("price_level")
+  openingHours  Json?         @map("opening_hours")
+  neighbourhood Neighbourhood
+  createdAt     DateTime      @default(now()) @map("created_at")
+  updatedAt     DateTime      @updatedAt @map("updated_at")
+
+  events     Event[]
+  activities ActivityLog[]
+
+  @@index([category])
+  @@index([neighbourhood])
+  @@map("venues")
+}
+
+enum PriceLevel {
+  free
+  low
+  medium
+  high
+
+  @@map("price_level")
+}
+
+model Event {
+  id             String    @id @default(uuid()) @db.Uuid
+  venueId        String?   @map("venue_id") @db.Uuid
+  title          String
+  description    String
+  dateStart      DateTime  @map("date_start")
+  dateEnd        DateTime? @map("date_end")
+  ageMinMonths   Int       @default(0) @map("age_min_months")
+  ageMaxMonths   Int       @default(72) @map("age_max_months")
+  priceDkk       Int       @default(0) @map("price_dkk")
+  bookingUrl     String?   @map("booking_url")
+  recurring      Boolean   @default(false)
+  recurrenceRule String?   @map("recurrence_rule")
+  createdAt      DateTime  @default(now()) @map("created_at")
+  updatedAt      DateTime  @updatedAt @map("updated_at")
+
+  venue Venue? @relation(fields: [venueId], references: [id], onDelete: SetNull)
+
+  @@index([dateStart])
+  @@map("events")
+}
+
+enum AulaConnectionStatus {
+  pending
+  active
+  error
+  disconnected
+
+  @@map("aula_connection_status")
+}
+
+enum AulaSource {
+  vuggestue
+  bornehave
+
+  @@map("aula_source")
+}
+
+model AulaConnection {
+  id                  String    @id @default(uuid()) @db.Uuid
+  userId              String    @map("user_id") @db.Uuid
+  childId             String    @map("child_id") @db.Uuid
+  aulaInstitutionId   String    @map("aula_institution_id")
+  // Stored encrypted via Supabase Vault. Never read these directly in app code —
+  // use the `aula.get_credentials(connection_id)` SQL function which decrypts.
+  accessTokenCipher   String    @map("access_token_cipher")
+  refreshTokenCipher  String?   @map("refresh_token_cipher")
+  lastSyncedAt        DateTime? @map("last_synced_at")
+  status              AulaConnectionStatus @default(pending)
+  createdAt           DateTime  @default(now()) @map("created_at")
+  updatedAt           DateTime  @updatedAt @map("updated_at")
+
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  child Child @relation(fields: [childId], references: [id], onDelete: Cascade)
+
+  @@unique([childId, aulaInstitutionId])
+  @@index([userId])
+  @@map("aula_connections")
+}
+
+model AulaHighlight {
+  id           String   @id @default(uuid()) @db.Uuid
+  childId      String   @map("child_id") @db.Uuid
+  aulaPostId   String   @map("aula_post_id")
+  title        String
+  content      String
+  photos       String[] @default([])
+  postedAt     DateTime @map("posted_at")
+  importedAt   DateTime @default(now()) @map("imported_at")
+  source       AulaSource @default(vuggestue)
+  createdAt    DateTime @default(now()) @map("created_at")
+
+  child Child @relation(fields: [childId], references: [id], onDelete: Cascade)
+
+  @@unique([childId, aulaPostId])
+  @@index([childId, postedAt])
+  @@map("aula_highlights")
+}

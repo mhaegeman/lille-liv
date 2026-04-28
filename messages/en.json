@@ -1,0 +1,159 @@
+{
+  "app": {
+    "name": "Lille Liv",
+    "tagline": "A family companion for Copenhagen"
+  },
+  "nav": {
+    "discover": "Discover",
+    "journal": "Journal",
+    "profile": "Profile",
+    "events": "Events"
+  },
+  "auth": {
+    "signIn": "Sign in",
+    "signOut": "Sign out",
+    "email": "Email",
+    "magicLink": "Send me a magic link",
+    "checkEmail": "Check your inbox",
+    "checkEmailDescription": "We sent a link to {email}. Click it to sign in.",
+    "signInTitle": "Welcome back",
+    "signInSubtitle": "Enter your email and we'll send a magic link",
+    "loginRequired": "Sign in to save",
+    "termsHint": "By continuing you agree to our terms and privacy policy."
+  },
+  "discover": {
+    "title": "Discover Copenhagen",
+    "subtitle": "Cafes, playgrounds, libraries and experiences for young families",
+    "filters": {
+      "title": "Filters",
+      "ageRange": "Age",
+      "ageMonths": "{months} mo.",
+      "ageYears": "{years} yr.",
+      "category": "Category",
+      "neighbourhood": "Neighbourhood",
+      "indoorOutdoor": "Indoor / outdoor",
+      "indoor": "Indoor",
+      "outdoor": "Outdoor",
+      "openNow": "Open now",
+      "reset": "Reset",
+      "apply": "Apply",
+      "anyAge": "Any age",
+      "anyArea": "Any area"
+    },
+    "categories": {
+      "cafe": "Cafe",
+      "playground": "Playground",
+      "indoor_play": "Indoor play",
+      "cinema": "Cinema",
+      "library": "Library",
+      "swimming": "Swimming",
+      "theatre": "Theatre",
+      "museum": "Museum",
+      "event": "Event",
+      "nature": "Nature",
+      "gymnasium": "Gymnasium"
+    },
+    "neighbourhoods": {
+      "norrebro": "Nørrebro",
+      "osterbro": "Østerbro",
+      "vesterbro": "Vesterbro",
+      "frederiksberg": "Frederiksberg",
+      "indre_by": "Indre By",
+      "amager": "Amager",
+      "valby": "Valby",
+      "nordvest": "Nordvest",
+      "bispebjerg": "Bispebjerg",
+      "sydhavn": "Sydhavn",
+      "christianshavn": "Christianshavn",
+      "other": "Other"
+    },
+    "viewMap": "Map",
+    "viewList": "List",
+    "results": "{count, plural, =0 {No places found} =1 {1 place} other {# places}}",
+    "openInMaps": "Open in Google Maps",
+    "addToLog": "Add to my journal",
+    "ageBadge": "Suitable for {min}–{max} months",
+    "noResults": "No places match your filters.",
+    "noResultsHint": "Try adjusting age or neighbourhood."
+  },
+  "journal": {
+    "title": "Journal",
+    "subtitle": "A private home for family memories",
+    "addMilestone": "Add milestone",
+    "addActivity": "Add activity",
+    "timeline": "Timeline",
+    "noEntries": "Nothing here yet.",
+    "noEntriesHint": "Start with a milestone or an activity.",
+    "ageMonths": "{months} months",
+    "ageYears": "{years, plural, =1 {1 year} other {# years}}",
+    "from": {
+      "vuggestue": "From vuggestue",
+      "bornehave": "From børnehave"
+    },
+    "milestoneTypes": {
+      "first_smile": "First smile",
+      "first_laugh": "First laugh",
+      "first_word": "First word",
+      "first_steps": "First steps",
+      "sat_up_alone": "Sat up alone",
+      "first_tooth": "First tooth",
+      "slept_through": "Slept through",
+      "first_food": "First food",
+      "first_haircut": "First haircut",
+      "started_vuggestue": "Started vuggestue",
+      "started_bornehave": "Started børnehave",
+      "custom": "Other"
+    },
+    "form": {
+      "type": "Type",
+      "title": "Title",
+      "date": "Date",
+      "notes": "Notes",
+      "photo": "Photo",
+      "save": "Save",
+      "cancel": "Cancel"
+    }
+  },
+  "child": {
+    "addChild": "Add child",
+    "name": "Name",
+    "dateOfBirth": "Date of birth",
+    "gender": "Gender",
+    "genderOptions": {
+      "girl": "Girl",
+      "boy": "Boy",
+      "other": "Other",
+      "prefer_not_to_say": "Prefer not to say"
+    },
+    "photo": "Photo",
+    "save": "Save",
+    "create": "Create"
+  },
+  "onboarding": {
+    "welcome": "Welcome to Lille Liv",
+    "intro": "Let's set up your child's profile",
+    "step1": "About your child",
+    "step2": "Connect Aula",
+    "skipForNow": "Skip for now",
+    "next": "Next",
+    "finish": "Finish"
+  },
+  "aula": {
+    "title": "Aula",
+    "comingSoon": "Aula integration coming soon",
+    "description": "We're working on bringing highlights from vuggestue and børnehave straight into your journal.",
+    "connect": "Connect Aula",
+    "notifyMe": "Notify me when it's ready"
+  },
+  "common": {
+    "loading": "Loading…",
+    "error": "Something went wrong",
+    "retry": "Try again",
+    "save": "Save",
+    "delete": "Delete",
+    "edit": "Edit",
+    "close": "Close",
+    "back": "Back",
+    "viewDetails": "View details"
+  }
+}

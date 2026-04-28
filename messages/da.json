@@ -1,0 +1,159 @@
+{
+  "app": {
+    "name": "Lille Liv",
+    "tagline": "Familieguiden til København"
+  },
+  "nav": {
+    "discover": "Opdag",
+    "journal": "Dagbog",
+    "profile": "Profil",
+    "events": "Begivenheder"
+  },
+  "auth": {
+    "signIn": "Log ind",
+    "signOut": "Log ud",
+    "email": "E-mail",
+    "magicLink": "Send mig et magisk link",
+    "checkEmail": "Tjek din indbakke",
+    "checkEmailDescription": "Vi har sendt et link til {email}. Klik på linket for at logge ind.",
+    "signInTitle": "Velkommen tilbage",
+    "signInSubtitle": "Indtast din e-mail, så sender vi et magisk link",
+    "loginRequired": "Log ind for at gemme",
+    "termsHint": "Ved at fortsætte accepterer du vores vilkår og privatlivspolitik."
+  },
+  "discover": {
+    "title": "Opdag København",
+    "subtitle": "Caféer, legepladser, biblioteker og oplevelser for små familier",
+    "filters": {
+      "title": "Filtre",
+      "ageRange": "Alder",
+      "ageMonths": "{months} mdr.",
+      "ageYears": "{years} år",
+      "category": "Kategori",
+      "neighbourhood": "Bydel",
+      "indoorOutdoor": "Indendørs / udendørs",
+      "indoor": "Indendørs",
+      "outdoor": "Udendørs",
+      "openNow": "Åben nu",
+      "reset": "Nulstil",
+      "apply": "Anvend",
+      "anyAge": "Alle aldre",
+      "anyArea": "Alle bydele"
+    },
+    "categories": {
+      "cafe": "Cafe",
+      "playground": "Legeplads",
+      "indoor_play": "Indendørs leg",
+      "cinema": "Biograf",
+      "library": "Bibliotek",
+      "swimming": "Svømning",
+      "theatre": "Teater",
+      "museum": "Museum",
+      "event": "Begivenhed",
+      "nature": "Natur",
+      "gymnasium": "Gymnastik"
+    },
+    "neighbourhoods": {
+      "norrebro": "Nørrebro",
+      "osterbro": "Østerbro",
+      "vesterbro": "Vesterbro",
+      "frederiksberg": "Frederiksberg",
+      "indre_by": "Indre By",
+      "amager": "Amager",
+      "valby": "Valby",
+      "nordvest": "Nordvest",
+      "bispebjerg": "Bispebjerg",
+      "sydhavn": "Sydhavn",
+      "christianshavn": "Christianshavn",
+      "other": "Andet"
+    },
+    "viewMap": "Vis kort",
+    "viewList": "Vis liste",
+    "results": "{count, plural, =0 {Ingen steder fundet} =1 {1 sted} other {# steder}}",
+    "openInMaps": "Åbn i Google Maps",
+    "addToLog": "Føj til min dagbog",
+    "ageBadge": "Egnet for {min}–{max} mdr.",
+    "noResults": "Ingen steder matcher dine filtre.",
+    "noResultsHint": "Prøv at justere alder eller bydel."
+  },
+  "journal": {
+    "title": "Dagbog",
+    "subtitle": "Et privat hjem for familiens minder",
+    "addMilestone": "Tilføj milepæl",
+    "addActivity": "Tilføj oplevelse",
+    "timeline": "Tidslinje",
+    "noEntries": "Endnu ingen indtastninger.",
+    "noEntriesHint": "Start med en milepæl eller en oplevelse.",
+    "ageMonths": "{months} måneder",
+    "ageYears": "{years, plural, =1 {1 år} other {# år}}",
+    "from": {
+      "vuggestue": "Fra vuggestuen",
+      "bornehave": "Fra børnehaven"
+    },
+    "milestoneTypes": {
+      "first_smile": "Første smil",
+      "first_laugh": "Første grin",
+      "first_word": "Første ord",
+      "first_steps": "Første skridt",
+      "sat_up_alone": "Sad op alene",
+      "first_tooth": "Første tand",
+      "slept_through": "Sov igennem",
+      "first_food": "Første smagsprøve",
+      "first_haircut": "Første klipning",
+      "started_vuggestue": "Startede i vuggestue",
+      "started_bornehave": "Startede i børnehave",
+      "custom": "Andet"
+    },
+    "form": {
+      "type": "Type",
+      "title": "Titel",
+      "date": "Dato",
+      "notes": "Noter",
+      "photo": "Foto",
+      "save": "Gem",
+      "cancel": "Annullér"
+    }
+  },
+  "child": {
+    "addChild": "Tilføj barn",
+    "name": "Navn",
+    "dateOfBirth": "Fødselsdato",
+    "gender": "Køn",
+    "genderOptions": {
+      "girl": "Pige",
+      "boy": "Dreng",
+      "other": "Andet",
+      "prefer_not_to_say": "Vil ikke oplyse"
+    },
+    "photo": "Foto",
+    "save": "Gem",
+    "create": "Opret"
+  },
+  "onboarding": {
+    "welcome": "Velkommen til Lille Liv",
+    "intro": "Lad os oprette dit barns profil",
+    "step1": "Om dit barn",
+    "step2": "Forbind Aula",
+    "skipForNow": "Spring over",
+    "next": "Næste",
+    "finish": "Færdig"
+  },
+  "aula": {
+    "title": "Aula",
+    "comingSoon": "Aula-integration kommer snart",
+    "description": "Vi arbejder på at hente højdepunkter fra vuggestuen og børnehaven direkte ind i jeres dagbog.",
+    "connect": "Forbind Aula",
+    "notifyMe": "Giv mig besked når det er klart"
+  },
+  "common": {
+    "loading": "Indlæser…",
+    "error": "Noget gik galt",
+    "retry": "Prøv igen",
+    "save": "Gem",
+    "delete": "Slet",
+    "edit": "Rediger",
+    "close": "Luk",
+    "back": "Tilbage",
+    "viewDetails": "Se detaljer"
+  }
+}
